@@ -1,6 +1,7 @@
 # Deploying a Honeypot Tutorial
+Trevontae' Haughton
 
-Feel like someones in your network? I've got the solution, Honeypots!
+Feel like someones in your network or is trying to get in? I've got the solution, Honeypots!
 
 - [Introduction](#introduction)
 - [Prerequisites](#prerequisites)
@@ -31,3 +32,26 @@ There are various honeypot solutions available. For this tutorial, we'll use Hon
 ```bash
 sudo apt-get update
 sudo apt-get install honeyd
+```
+## Step 2: Configure Honeyd
+create default
+set default personality "Apple Mac OS X"
+
+## Step 3: Start Honeyd
+Start Honeyd using the configuration file:
+```sudo honeyd -f honeypot.conf -l /var/log/honeyd.log```
+
+## Step 4: Configure Firewall Rules
+Configure your server's firewall to redirect traffic to the honeypot. Use iptables for Linux:
+```sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080```
+
+## Step 5: Monitor Honeypot Activity
+
+Monitor the honeypot logs to analyze incoming connections and potential threats:
+```tail -f /var/log/honeyd.log```
+
+## Conclusion
+Congratulations! You've successfully deployed a honeypot using Honeyd. Regularly review honeypot logs and adjust configurations based on observed activity to enhance your cybersecurity knowledge and defenses.
+
+For more information and advanced configurations, refer to the Honeyd documentation.
+https://github.com/DataSoft/Honeyd/blob/master/README
